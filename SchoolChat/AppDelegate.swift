@@ -8,13 +8,55 @@
 
 import UIKit
 
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    
 
+        //手动登陆函数 
+    func connect (account: String, password: String, completion : ()-> Void)
+    {
+        
+    NIMSDK.sharedSDK().loginManager.login(account, token: password)
+        {
+            (error :NSError?) in
+            if (error == nil) {print("手动登录成功，信息自动保存")
+                completion()
+            }
+            else {print("登录失败,重新输入")}
+            }
+    
+    }
+    
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        
+        let UserInfo = NSUserDefaults.standardUserDefaults()
+        
+        if( UserInfo.stringForKey("account")! == "" ){
+            let LoginSB = UIStoryboard.init(name: "Login" ,bundle: nil)
+            let LoginVC = LoginSB.instantiateViewControllerWithIdentifier("log") as! LoginViewController
+            self.window?.rootViewController = LoginVC
+        }
+        else{
+            
+            NIMSDK.sharedSDK().loginManager.autoLogin("OST", token: "123456")
+            print("自动登录成功")
+        }
+        
+        
+        
+        NIMSDK.sharedSDK().registerWithAppID("0f5a5ed59a0fa44ec27c07edf2b1a2da", cerName: "Test")
+
+   
+        
+        
+        
+    
         // Override point for customization after application launch.
         return true
     }
