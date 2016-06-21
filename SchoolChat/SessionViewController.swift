@@ -7,39 +7,69 @@
 //
 
 import UIKit
-class SessionViewController:  NIMSessionViewController{
+import MobileCoreServices
+
+class SessionViewController:  NIMSessionViewController
+    ,UIImagePickerControllerDelegate,
+    UINavigationControllerDelegate,
+    NIMSystemNotificationManagerDelegate,
+    NIMMediaManagerDelgate
+{
   
-  
+    
+    //多媒体选项功能
+    override func onTapMediaItem(item: NIMMediaItem!) {
+        
+        switch item.tag {
+        case 1:                                                                                 //照片
+            let imagepicker = UIImagePickerController.init()
+            imagepicker.delegate = self
+            imagepicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+            imagepicker.mediaTypes = [kUTTypeImage as String]
+            self.presentViewController(imagepicker, animated: true, completion: {})
+        
+            
+
+        default:
+            print("无对应多媒体")
+        }
+       
+    }
     
     
+    //相册选择器：获得并发送照片
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        let oriImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        let imageMessage = NIMMessage()
+        imageMessage.messageObject = NIMImageObject.init(image: oriImage)
+        picker.dismissViewControllerAnimated(true, completion: nil)
+        self.sendMessage(imageMessage)
+    }
     
+    //会话设置文件
+    override func sessionConfig() -> NIMSessionConfig! {
+        return MySessionConfig()
+    }
+
      
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.sessionConfig()
         // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+
+    //会话隐藏tab
     override func viewWillAppear(animated: Bool) {
         self.tabBarController?.tabBar.hidden = true
-        
     }
     
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-        
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func viewWillDisappear(animated: Bool) {
+        self.tabBarController?.tabBar.hidden = false
     }
+
+        
     
 
 }

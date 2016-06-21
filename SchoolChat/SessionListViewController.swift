@@ -8,11 +8,15 @@
 
 import UIKit
 
-class SessionListViewController: NIMSessionListViewController {
+class SessionListViewController: NIMSessionListViewController{
+    
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.reload()
+        print(self.recentSessions.count)
+        
         // Do any additional setup after loading the view.
     }
 
@@ -22,6 +26,14 @@ class SessionListViewController: NIMSessionListViewController {
     }
     
 
+    override func onSelectedRecent(recent: NIMRecentSession!, atIndexPath indexPath: NSIndexPath!) {
+
+        let SesVC = SessionViewController.init(session: recent.session)
+        SesVC.title = recent.session?.sessionId
+        SesVC
+        self.navigationController?.pushViewController(SesVC, animated: true)
+        
+    }
     /*
     // MARK: - Navigation
 

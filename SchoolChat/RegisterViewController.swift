@@ -12,7 +12,8 @@ class RegisterViewController: UIViewController {
     
     @IBOutlet weak var chatname: UITextField!
     
-    
+
+
   
     
     @IBAction func Regi(sender: AnyObject) {
@@ -75,7 +76,6 @@ class RegisterViewController: UIViewController {
     
     
     @IBOutlet weak var Regbutton: UIButton!
-    
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var ID: UITextField!
     
@@ -107,26 +107,7 @@ class RegisterViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
+    
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-     
-     
-     
-     
-     
-     
-     
-
-     
-     
-
-     
-    */
 
 }

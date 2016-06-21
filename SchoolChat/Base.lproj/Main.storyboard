@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--About Me View Controller-->
@@ -18,21 +17,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lwj-e6-FVi">
-                                <rect key="frame" x="120" y="214" width="360" height="187"/>
-                                <state key="normal" title="Logout"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vq1-nL-oaf">
+                                <rect key="frame" x="91" y="160" width="207" height="131"/>
+                                <state key="normal" title="Button"/>
                                 <connections>
-                                    <action selector="Logout:" destination="bzz-28-83q" eventType="touchUpInside" id="LMx-2Y-VKq"/>
+                                    <action selector="signout:" destination="bzz-28-83q" eventType="touchUpInside" id="7m0-Vm-XPa"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="lwj-e6-FVi" firstAttribute="top" secondItem="gTU-IQ-fLt" secondAttribute="bottom" constant="150" id="XFN-wf-HAC"/>
-                            <constraint firstItem="lwj-e6-FVi" firstAttribute="leading" secondItem="VaT-1s-gEs" secondAttribute="leadingMargin" constant="100" id="awP-fw-m64"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="lwj-e6-FVi" secondAttribute="trailing" constant="100" id="bKT-HQ-SfT"/>
-                            <constraint firstItem="s5H-nF-M4u" firstAttribute="top" secondItem="lwj-e6-FVi" secondAttribute="bottom" constant="150" id="vzY-0W-2ay"/>
-                        </constraints>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="7nH-hv-5QG"/>
                 </viewController>
